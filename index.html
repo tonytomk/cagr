@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAGR Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; }
+        .container { max-width: 400px; margin: auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; }
+        label { display: block; margin-top: 16px; }
+        input[type="number"] { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 20px; width: 100%; padding: 10px; background: #0078d4; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #005fa3; }
+        .result { margin-top: 20px; font-size: 18px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>CAGR Calculator</h2>
+        <form id="cagrForm" onsubmit="event.preventDefault(); calculateCAGR();">
+            <label for="startValue">Start Value (BV):</label>
+            <input type="number" id="startValue" required step="any" min="0">
+
+            <label for="finalValue">Final Value (EV):</label>
+            <input type="number" id="finalValue" required step="any" min="0">
+
+            <label for="months">Number of Months:</label>
+            <input type="number" id="months" required step="1" min="1">
+
+            <button type="submit">Calculate CAGR</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        function calculateCAGR() {
+            const bv = parseFloat(document.getElementById('startValue').value);
+            const ev = parseFloat(document.getElementById('finalValue').value);
+            const months = parseInt(document.getElementById('months').value);
+            let resultDiv = document.getElementById('result');
+
+            if (bv <= 0 || ev <= 0 || months <= 0) {
+                resultDiv.textContent = "Please enter valid positive numbers.";
+                return;
+            }
+
+            // Convert months to years
+            const years = months / 12;
+            // CAGR formula: ((EV/BV)^(1/n)) - 1
+            const cagr = Math.pow(ev / bv, 1 / years) - 1;
+            const percent = (cagr * 100).toFixed(2);
+            const profit = (ev - bv).toFixed(2);
+            resultDiv.innerHTML = `CAGR: ${percent}%<br>Actual Profit: ${profit}`;
+        }
+    </script>
+</body>
+</html>

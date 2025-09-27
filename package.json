@@ -1,0 +1,11 @@
+{
+  "name": "cagr-project",
+  "version": "1.0.0",
+  "description": "A simple project to serve index.html with npm run dev",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
