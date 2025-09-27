@@ -48,9 +48,17 @@
             const years = months / 12;
             // CAGR formula: ((EV/BV)^(1/n)) - 1
             const cagr = Math.pow(ev / bv, 1 / years) - 1;
-            const percent = (cagr * 100).toFixed(2);
-            const profit = (ev - bv).toFixed(2);
-            resultDiv.innerHTML = `CAGR: ${percent}%<br>Actual Profit: ${profit}`;
+                        const percent = (cagr * 100).toFixed(2);
+                        const profit = (ev - bv).toFixed(2);
+                        const totalGrowth = (((ev - bv) / bv) * 100).toFixed(2);
+                                                resultDiv.innerHTML = `
+                                                        <table style=\"margin:auto; border-collapse:collapse; min-width: 250px;\">
+                                                            <tr><th style='text-align:left; padding:6px; border-bottom:1px solid #ddd;'>Metric</th><th style='text-align:left; padding:6px; border-bottom:1px solid #ddd;'>Value</th></tr>
+                                                            <tr><td style='padding:6px; text-align:left;'>CAGR</td><td style='padding:6px; text-align:left;'>${percent}%</td></tr>
+                                                            <tr><td style='padding:6px; text-align:left;'>Actual Profit</td><td style='padding:6px; text-align:left;'>${profit}</td></tr>
+                                                            <tr><td style='padding:6px; text-align:left;'>Total Growth Percentage</td><td style='padding:6px; text-align:left;'>${totalGrowth}%</td></tr>
+                                                        </table>
+                                                `;
         }
     </script>
 </body>
