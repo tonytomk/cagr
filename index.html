@@ -6,13 +6,16 @@
     <title>CAGR Calculator</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; }
-        .container { max-width: 400px; margin: auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .container { max-width: 400px; margin: auto; background: #fff; padding: 24px;  border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         h2 { text-align: center; }
         label { display: block; margin-top: 16px; }
-        input[type="number"] { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; }
+    input[type="number"] { width: 95%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; }
         button { margin-top: 20px; width: 100%; padding: 10px; background: #0078d4; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
         button:hover { background: #005fa3; }
         .result { margin-top: 20px; font-size: 18px; text-align: center; }
+        .cagr-table { margin:auto; border-collapse:collapse; min-width: 250px; }
+    .cagr-table th { text-align:left; padding:6px 12px; border-bottom:1px solid #ddd; }
+    .cagr-table td { padding:6px 12px; text-align:left; }
     </style>
 </head>
 <body>
@@ -51,14 +54,14 @@
                         const percent = (cagr * 100).toFixed(2);
                         const profit = (ev - bv).toFixed(2);
                         const totalGrowth = (((ev - bv) / bv) * 100).toFixed(2);
-                                                resultDiv.innerHTML = `
-                                                        <table style=\"margin:auto; border-collapse:collapse; min-width: 250px;\">
-                                                            <tr><th style='text-align:left; padding:6px; border-bottom:1px solid #ddd;'>Metric</th><th style='text-align:left; padding:6px; border-bottom:1px solid #ddd;'>Value</th></tr>
-                                                            <tr><td style='padding:6px; text-align:left;'>CAGR</td><td style='padding:6px; text-align:left;'>${percent}%</td></tr>
-                                                            <tr><td style='padding:6px; text-align:left;'>Actual Profit</td><td style='padding:6px; text-align:left;'>${profit}</td></tr>
-                                                            <tr><td style='padding:6px; text-align:left;'>Total Growth Percentage</td><td style='padding:6px; text-align:left;'>${totalGrowth}%</td></tr>
-                                                        </table>
-                                                `;
+                                                            resultDiv.innerHTML = `
+                                                                    <table class="cagr-table">
+                                                                        <tr><th>Metric</th><th>Value</th></tr>
+                                                                        <tr><td>CAGR</td><td>${percent}%</td></tr>
+                                                                        <tr><td>Actual Profit</td><td>${profit}</td></tr>
+                                                                        <tr><td>Total Growth Percentage</td><td>${totalGrowth}%</td></tr>
+                                                                    </table>
+                                                            `;
         }
     </script>
 </body>
